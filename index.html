@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QLV — Quantum Levitation Vehicle</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f3ed;color:#18232a;font-family:Arial,Helvetica,sans-serif}
+nav{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;z-index:10}.logo{font-weight:800;letter-spacing:2px}.links a{margin-left:24px;color:#18232a;text-decoration:none;font-size:14px}
+.hero{padding:90px 8%;background:#e8f1f2;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}.tag{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700}
+h1{font-size:clamp(44px,7vw,82px);line-height:.92;letter-spacing:-4px;margin:16px 0 25px}h2{font-size:40px;margin:12px 0 20px}h3{font-size:22px}p{font-size:17px;line-height:1.7}.btn{display:inline-block;background:#18232a;color:#fff;padding:14px 22px;text-decoration:none;border-radius:4px}
+.vehicle{height:330px;border-radius:18px;background:#10252d;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.vehicle:after{content:"";position:absolute;bottom:55px;width:78%;height:8px;background:#75d2df;box-shadow:0 0 28px #75d2df}.pod{width:64%;height:92px;background:#e9eeee;border-radius:70% 70% 25% 25%;position:relative;z-index:2}.pod:before{content:"";position:absolute;left:18%;right:18%;top:18px;height:27px;border-radius:20px;background:#16353e}
+.section{max-width:1250px;margin:auto;padding:75px 8%}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:28px}.num{font-size:46px;font-weight:800;color:#7baeb5}.step{display:grid;grid-template-columns:75px 1fr;gap:20px;margin:30px 0}.stepnum{font-size:40px;font-weight:800}
+.dashboard{background:#10191d;color:#dffaff;border-radius:12px;padding:25px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-family:monospace}.metric{border:1px solid #31525b;padding:16px}.metric b{display:block;font-size:24px;margin-top:8px}
+footer{background:#18232a;color:#fff;padding:45px 8%} @media(max-width:800px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.dashboard{grid-template-columns:1fr 1fr}.links{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="logo">QLV PROJECT</div><div class="links"><a href="#physics">Physics</a><a href="#prototype">Prototype</a><a href="#controller">Controller</a><a href="#research">Research</a></div></nav>
+
+<section class="hero">
+<div><div class="tag">Experimental science project</div><h1>Quantum<br>Levitation<br>Vehicle</h1>
+<p>Exploring superconductivity, magnetic fields and electric propulsion as a concept for future transportation.</p>
+<a class="btn" href="#prototype">Explore the prototype</a></div>
+<div class="vehicle"><div class="pod"></div></div>
+</section>
+
+<section class="section" id="physics"><div class="tag">01 — The physics</div><h2>How could it work?</h2>
+<p>The concept separates levitation, propulsion and control. Superconductors and magnets provide the levitation effect; an electric propulsion system provides movement; sensors and a controller monitor the prototype.</p>
+<div class="grid">
+<div class="card"><div class="num">01</div><h3>Superconductivity</h3><p>A superconductor can show unusual magnetic behaviour when cooled below its critical temperature.</p></div>
+<div class="card"><div class="num">02</div><h3>Flux pinning</h3><p>Magnetic flux can become pinned in a suitable superconductor, helping it remain stable relative to a magnetic track.</p></div>
+<div class="card"><div class="num">03</div><h3>Propulsion</h3><p>A separate electric or linear-motor system can provide controlled forward and backward motion.</p></div>
+</div></section>
+
+<section class="section" id="prototype"><div class="tag">02 — The prototype</div><h2>Build it in stages.</h2>
+<div class="step"><div class="stepnum">01</div><div><h3>Levitation platform</h3><p>Start with a small, non-person-carrying demonstration of magnetic/superconducting levitation.</p></div></div>
+<div class="step"><div class="stepnum">02</div><div><h3>Telemetry</h3><p>Add sensors for temperature, battery state, position and speed.</p></div></div>
+<div class="step"><div class="stepnum">03</div><div><h3>Propulsion</h3><p>Test controlled movement on a dedicated small track.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div><h3>Remote control</h3><p>Connect a drone-style transmitter to the onboard controller.</p></div></div>
+</section>
+
+<section class="section" id="controller"><div class="tag">03 — Control system</div><h2>The vehicle dashboard.</h2>
+<p>The handheld controller is the pilot interface. The onboard computer receives commands, reads sensors and manages the prototype.</p>
+<div class="dashboard"><div class="metric">LEVITATION<b>STABLE</b></div><div class="metric">HEIGHT<b>18 mm</b></div><div class="metric">SPEED<b>2.4 m/s</b></div><div class="metric">BATTERY<b>92%</b></div></div>
+</section>
+
+<section class="section" id="research"><div class="tag">04 — Research</div><h2>Hypotheses</h2>
+<div class="card"><h3>Quantum levitation hypothesis</h3><p><i>If future quantum materials can maintain superconducting behaviour under less demanding conditions while allowing precise control of magnetic flux, then stable levitation systems may become more practical for transportation and engineering.</i></p></div>
+<div class="card" style="margin-top:20px"><h3>Important limitation</h3><p>This is a theoretical proposal. It does not claim that room-temperature superconductors, anti-gravity or a practical quantum-levitation vehicle currently exist.</p></div>
+</section>
+
+<footer><h2>QLV PROJECT</h2><p>A science and engineering concept exploring physics, control systems and sustainable transportation.</p></footer>
+</body></html>
