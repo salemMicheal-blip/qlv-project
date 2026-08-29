@@ -1,65 +1,674 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QLV V3 | Quantum Levitation Vehicle</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QLV — Quantum Levitation Vehicle</title>
+
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#071116;color:#edf7f7;font-family:Arial,sans-serif}
-nav{position:sticky;top:0;z-index:9;padding:18px 6%;background:#071116ee;border-bottom:1px solid #294047;display:flex;justify-content:space-between}.logo{font-weight:900;letter-spacing:3px}nav a{color:#edf7f7;text-decoration:none;margin-left:22px;font-size:13px}
-.hero{min-height:calc(100vh - 65px);padding:7%;display:grid;grid-template-columns:1fr 1.15fr;gap:45px;align-items:center;background:#09191f}
-.tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#8fe2e7;font-weight:bold}h1{font-size:clamp(50px,7vw,92px);line-height:.88;letter-spacing:-5px;margin:18px 0}h2{font-size:clamp(35px,5vw,58px);letter-spacing:-3px}h3{font-size:20px}p{color:#9db0b5;line-height:1.75;font-size:16px}.hero p{font-size:18px}.btn{display:inline-block;margin-top:12px;padding:14px 21px;background:#8fe2e7;color:#071116;text-decoration:none;font-weight:bold}
-.visual{height:510px;border:1px solid #294047;border-radius:18px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 35%,#193d47,#0b1c23 45%,#061014 80%);display:flex;align-items:center;justify-content:center}.visual:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#c9f6f8 1px,transparent 1px);background-size:65px 65px;opacity:.15}.beam{position:absolute;top:69%;width:100%;height:2px;background:#8fe2e7;box-shadow:0 0 30px 7px #8fe2e766}.vehicle{position:relative;width:67%;height:185px;background:transparent;border-radius:70% 70% 24% 24%;box-shadow:0 28px 35px #0009,0 0 35px #8fe2e733;animation:float 3s ease-in-out infinite}.vehicle:before{content:"";position:absolute;left:18%;right:18%;top:24px;height:35px;background:#12323a;border-radius:30px;border:1px solid #71979d}@keyframes float{50%{transform:translateY(-16px)}}.badge{position:absolute;padding:8px 11px;border:1px solid #41636b;background:#08151a;color:#c9f6f8;font:11px monospace}.b1{top:20px;left:20px}.b2{top:20px;right:20px}.b3{bottom:20px;left:20px}.b4{bottom:20px;right:20px}
-section{max-width:1250px;margin:auto;padding:95px 6%}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:#0d1b21;border:1px solid #294047;border-radius:10px;padding:28px}.num{font-size:43px;font-weight:900;color:#8fe2e7}.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.spec div,.metric{border:1px solid #294047;padding:18px;background:#09161b}.spec b,.metric b{display:block;font-size:22px;margin-top:7px;color:#c9f6f8}
-.controller{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}.remote{background:#111d22;border:1px solid #38525a;border-radius:18px;padding:25px}.screen{height:180px;background:#061014;border:2px solid #34565e;border-radius:9px;padding:18px;color:#dffcff;font:13px monospace}.meter{height:7px;background:#213940;margin:13px 0}.meter span{display:block;width:82%;height:100%;background:#8fe2e7}.sticks{display:flex;justify-content:space-around;margin-top:25px}.stick{width:78px;height:58px;border:2px solid #506970;border-radius:50%}.note{border-left:4px solid #8fe2e7;padding:12px 18px;background:#0d1b21;margin-top:22px}.row{display:grid;grid-template-columns:85px 1fr;gap:20px;padding:26px 0;border-top:1px solid #294047}.row strong{font-size:38px;color:#8fe2e7}
-footer{padding:55px 6%;border-top:1px solid #294047;background:#050c10}@media(max-width:850px){.hero,.controller{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.spec{grid-template-columns:1fr 1fr}nav a{display:none}.visual{height:390px}}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050812;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,8,18,0.88);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #6ee7ff;
+}
+
+nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #6ee7ff;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+    position: relative;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(0,180,255,0.16), transparent 35%),
+        linear-gradient(180deg,#050812,#08101f);
+}
+
+.hero-content {
+    max-width: 1000px;
+}
+
+.badge {
+    display: inline-block;
+    border: 1px solid #315a70;
+    padding: 8px 16px;
+    border-radius: 30px;
+    color: #6ee7ff;
+    margin-bottom: 25px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 9vw, 105px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+}
+
+.hero h1 span {
+    color: #6ee7ff;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 30px auto;
+    color: #aab7c8;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary {
+    background: #6ee7ff;
+    color: #031018;
+}
+
+.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(110,231,255,0.4);
+}
+
+.secondary {
+    border: 1px solid #41566a;
+    color: white;
+}
+
+.secondary:hover {
+    border-color: #6ee7ff;
+    color: #6ee7ff;
+}
+
+/* VEHICLE */
+
+.vehicle-section {
+    padding: 100px 7%;
+    text-align: center;
+}
+
+.vehicle {
+    margin: 60px auto;
+    width: min(850px, 90%);
+    height: 260px;
+    position: relative;
+}
+
+.car {
+    position: absolute;
+    width: 75%;
+    height: 100px;
+    left: 12.5%;
+    top: 60px;
+    background: linear-gradient(180deg,#243849,#0d1825);
+    border: 2px solid #6ee7ff;
+    border-radius: 70px 100px 25px 25px;
+    box-shadow:
+        0 0 30px rgba(110,231,255,0.3),
+        inset 0 0 30px rgba(110,231,255,0.08);
+}
+
+.car:before {
+    content: "";
+    position: absolute;
+    width: 45%;
+    height: 55px;
+    left: 27%;
+    top: -38px;
+    background: linear-gradient(135deg,#163245,#07121d);
+    border: 2px solid #6ee7ff;
+    border-bottom: none;
+    border-radius: 60px 60px 5px 5px;
+}
+
+.car:after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 5px;
+    left: 5%;
+    bottom: -16px;
+    background: #6ee7ff;
+    box-shadow: 0 0 25px #6ee7ff;
+}
+
+.wheel {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #050812;
+    border: 3px solid #6ee7ff;
+    bottom: -28px;
+}
+
+.wheel.one {
+    left: 18%;
+}
+
+.wheel.two {
+    right: 18%;
+}
+
+.levitation {
+    position: absolute;
+    width: 70%;
+    height: 25px;
+    left: 15%;
+    bottom: 25px;
+    border-radius: 50%;
+    background: rgba(110,231,255,0.4);
+    filter: blur(12px);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { opacity: .4; transform: scaleX(.8); }
+    50% { opacity: 1; transform: scaleX(1); }
+}
+
+/* GENERAL */
+
+section {
+    padding: 100px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #9baabd;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.card {
+    background: rgba(15,25,40,0.8);
+    border: 1px solid #24384c;
+    padding: 30px;
+    border-radius: 16px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: #6ee7ff;
+}
+
+.card-icon {
+    font-size: 35px;
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #9baabd;
+    line-height: 1.7;
+}
+
+/* SPECS */
+
+.specs {
+    max-width: 900px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.spec {
+    padding: 22px;
+    border: 1px solid #263b50;
+    background: #0b1422;
+    border-radius: 12px;
+}
+
+.spec strong {
+    display: block;
+    color: #6ee7ff;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+/* CONTROL PANEL */
+
+.control-panel {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 35px;
+    background: #0b1422;
+    border: 1px solid #263b50;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.status {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: #102b24;
+    color: #68f5b5;
+    margin-bottom: 25px;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.control-buttons button {
+    padding: 13px 25px;
+    border: 1px solid #40566b;
+    border-radius: 8px;
+    background: #111d2c;
+    color: white;
+    cursor: pointer;
+}
+
+.control-buttons button:hover {
+    border-color: #6ee7ff;
+    color: #6ee7ff;
+}
+
+#controlMessage {
+    margin-top: 25px;
+    color: #aab7c8;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 7%;
+    text-align: center;
+    border-top: 1px solid #1d2d3d;
+    color: #8191a3;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    nav ul {
+        display: none;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .specs {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .vehicle {
+        transform: scale(.8);
+        width: 120%;
+        margin-left: -10%;
+    }
+}
 </style>
 </head>
+
 <body>
-<nav><div class="logo">QLV // V3</div><div><a href="#vehicle">VEHICLE</a><a href="#physics">PHYSICS</a><a href="#control">CONTROL</a><a href="#research">RESEARCH</a></div></nav>
 
-<div class="hero" id="vehicle">
-<div><div class="tag">Quantum Levitation Vehicle • Concept Platform</div><h1>THE NEXT<br>QLV<br>PROTOTYPE</h1><p>A futuristic student engineering concept combining superconductivity research, magnetic levitation, electric propulsion, sensors and remote control.</p><a class="btn" href="#physics">ENTER THE PROJECT →</a></div>
-<div class="visual"><div class="beam"></div><div class="badge b1">STATUS: RESEARCH</div><div class="badge b2">LINK: READY</div><div class="badge b3">LEVITATION: TEST</div><div class="badge b4">QLV-V3</div><div class="vehicle" aria-label="Futuristic quantum levitation vehicle">
-<svg viewBox="0 0 700 300" width="100%" height="100%" role="img">
-  <defs>
-    <linearGradient id="body" x1="0" x2="1"><stop offset="0"/><stop offset=".5" stop-color="#eef8f8"/><stop offset="1" stop-color="#8ea6aa"/></linearGradient>
-    <linearGradient id="glass" x1="0" x2="1"><stop offset="0" stop-color="#0b252d"/><stop offset="1" stop-color="#38717b"/></linearGradient>
-  </defs>
-  <ellipse cx="350" cy="250" rx="245" ry="22" fill="#8fe2e7" opacity=".18"/>
-  <path d="M105 205 Q125 140 205 125 L275 65 Q310 42 390 42 L455 65 Q510 78 560 130 L595 158 Q620 180 612 210 L585 228 L115 228 Q88 220 105 205Z" fill="url(#body)" stroke="#d9eeee" stroke-width="5"/>
-  <path d="M270 70 Q315 48 388 52 L445 72 L490 122 L220 122Z" fill="url(#glass)" stroke="#6e9ca3" stroke-width="4"/>
-  <path d="M350 54 L350 121" stroke="#86b4ba" stroke-width="3"/>
-  <circle cx="174" cy="215" r="38" fill="#071116" stroke="#8fe2e7" stroke-width="7"/>
-  <circle cx="174" cy="215" r="18" fill="#294b53"/>
-  <circle cx="526" cy="215" r="38" fill="#071116" stroke="#8fe2e7" stroke-width="7"/>
-  <circle cx="526" cy="215" r="18" fill="#294b53"/>
-  <rect x="275" y="145" width="150" height="38" rx="19" fill="#102d35" stroke="#8fe2e7" stroke-width="3"/>
-  <text x="350" y="170" text-anchor="middle" fill="#dffcff" font-size="22" font-family="Arial" font-weight="bold">QLV • V3</text>
-  <path d="M135 235 Q175 275 215 235 M485 235 Q525 275 565 235" fill="none" stroke="#8fe2e7" stroke-width="6" opacity=".8"/>
-</svg></div></div>
-</div>
+<nav>
+    <div class="logo">QLV<span>⚡</span></div>
 
-<section id="physics"><div class="tag">01 / Core technology</div><h2>Four systems. One experiment.</h2><div class="grid">
-<div class="card"><div class="num">01</div><h3>Superconductivity</h3><p>Study materials whose electrical and magnetic behaviour changes below a critical temperature.</p></div>
-<div class="card"><div class="num">02</div><h3>Magnetic levitation</h3><p>Investigate magnetic fields and flux pinning as a way to create stable levitation in a small test system.</p></div>
-<div class="card"><div class="num">03</div><h3>Electric propulsion</h3><p>Keep forward and backward motion as a separate controlled subsystem rather than assuming levitation creates thrust.</p></div>
-<div class="card"><div class="num">04</div><h3>Control + sensing</h3><p>Use a microcontroller, receiver and sensors to monitor the prototype and apply controlled commands.</p></div>
-<div class="card"><div class="num">05</div><h3>Energy research</h3><p>Compare practical electrical energy-storage and power options with efficiency and environmental impact in mind.</p></div>
-<div class="card"><div class="num">06</div><h3>Safety first</h3><p>Keep experiments small, low-speed and non-person-carrying, with adult supervision and appropriate precautions.</p></div>
-</div></section>
+    <ul>
+        <li><a href="#vehicle">Vehicle</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#specifications">Specifications</a></li>
+        <li><a href="#control">Control</a></li>
+    </ul>
+</nav>
 
-<section><div class="tag">02 / Concept specifications</div><h2>Prototype dashboard.</h2><div class="spec"><div>LEVITATION<b>TEST MODE</b></div><div>HEIGHT<b>18 mm*</b></div><div>SPEED<b>2.4 m/s*</b></div><div>BATTERY<b>92%*</b></div></div><p>*Demonstration values for the website interface, not measured performance.</p></section>
 
-<section id="control"><div class="tag">03 / Pilot interface</div><h2>Control from the ground.</h2><div class="controller"><div class="remote"><div class="screen"><b>QLV V3 // TELEMETRY</b><br><br>LEVITATION : STABLE<br>SPEED      : 2.4 m/s<br>TEMP       : 78 K<br>BATTERY    : 92%<div class="meter"><span></span></div>LINK       : CONNECTED</div><div class="sticks"><div class="stick"></div><div class="stick"></div></div></div><div><h3>RC-style controller + onboard intelligence</h3><p>The pilot can send movement commands while onboard electronics monitor sensors and enforce programmed limits.</p><div class="note"><b>V3 goal:</b> a controller that feels like a drone transmitter but is designed around the needs of the QLV prototype.</div></div></div></section>
+<!-- HERO -->
 
-<section id="research"><div class="tag">04 / Development roadmap</div><h2>Build. Measure. Improve.</h2>
-<div class="row"><strong>01</strong><div><h3>Bench research</h3><p>Learn the physics, define variables and establish measurable hypotheses before hardware testing.</p></div></div>
-<div class="row"><strong>02</strong><div><h3>Small levitation rig</h3><p>Test levitation behaviour with a tiny demonstration platform and record observations.</p></div></div>
-<div class="row"><strong>03</strong><div><h3>Control system</h3><p>Develop the receiver, sensors, telemetry and emergency limits.</p></div></div>
-<div class="row"><strong>04</strong><div><h3>Propulsion + integration</h3><p>Test movement on a controlled track and combine subsystems after individual tests work.</p></div></div>
-<div class="note"><b>Research hypothesis:</b> If magnetic-flux control and superconducting systems become easier to operate under practical conditions, then stable levitation could become more useful for future engineering applications.</div></section>
+<section class="hero">
 
-<footer><div class="tag">QLV PROJECT / V3</div><h2>Explore the physics. Build the prototype.</h2><p>This website presents a student concept and does not claim that anti-gravity or a practical quantum-levitation car currently exists.</p></footer>
+    <div class="hero-content">
+
+        <div class="badge">QUANTUM LEVITATION VEHICLE • V3</div>
+
+        <h1>
+            THE FUTURE<br>
+            <span>LEVITATES.</span>
+        </h1>
+
+        <p>
+            QLV is a conceptual next-generation vehicle project
+            exploring quantum levitation, magnetic systems and
+            sustainable transportation.
+        </p>
+
+        <div class="buttons">
+            <a href="#vehicle" class="btn primary">Explore QLV</a>
+            <a href="#technology" class="btn secondary">How It Works</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- VEHICLE -->
+
+<section id="vehicle" class="vehicle-section">
+
+    <h2 class="section-title">Meet the QLV</h2>
+
+    <p class="section-subtitle">
+        A futuristic concept designed to explore how levitation
+        technology could transform transportation.
+    </p>
+
+    <div class="vehicle">
+
+        <div class="levitation"></div>
+
+        <div class="car">
+
+            <div class="wheel one"></div>
+            <div class="wheel two"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TECHNOLOGY -->
+
+<section id="technology">
+
+    <h2 class="section-title">Quantum Technology</h2>
+
+    <p class="section-subtitle">
+        The QLV concept combines several areas of physics and
+        engineering to investigate controlled levitation.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">🧲</div>
+            <h3>Magnetic Levitation</h3>
+            <p>
+                Magnetic fields can create forces that oppose
+                gravity. Real-world maglev systems already use
+                electromagnetic principles to reduce contact
+                between vehicles and tracks.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">❄️</div>
+            <h3>Superconductivity</h3>
+            <p>
+                Certain materials can exhibit superconductivity
+                when cooled sufficiently. This can produce
+                interesting magnetic effects such as flux
+                pinning.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Smart Control</h3>
+            <p>
+                Sensors and computer control could monitor
+                position, stability and system conditions in a
+                future experimental prototype.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SPECIFICATIONS -->
+
+<section id="specifications">
+
+    <h2 class="section-title">Prototype Specifications</h2>
+
+    <p class="section-subtitle">
+        These are conceptual targets for the QLV project,
+        not specifications of an existing production vehicle.
+    </p>
+
+    <div class="specs">
+
+        <div class="spec">
+            <strong>PROJECT</strong>
+            Quantum Levitation Vehicle
+        </div>
+
+        <div class="spec">
+            <strong>VERSION</strong>
+            QLV V3
+        </div>
+
+        <div class="spec">
+            <strong>PROPULSION</strong>
+            Experimental electric system
+        </div>
+
+        <div class="spec">
+            <strong>LEVITATION</strong>
+            Experimental magnetic system
+        </div>
+
+        <div class="spec">
+            <strong>CONTROL</strong>
+            Computer-assisted prototype control
+        </div>
+
+        <div class="spec">
+            <strong>ENERGY GOAL</strong>
+            Low-emission electric power
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTROL -->
+
+<section id="control">
+
+    <h2 class="section-title">QLV Control System</h2>
+
+    <p class="section-subtitle">
+        A simulated control interface for the QLV prototype.
+    </p>
+
+    <div class="control-panel">
+
+        <div class="status" id="status">
+            ● SYSTEM READY
+        </div>
+
+        <div class="control-buttons">
+
+            <button onclick="startSystem()">
+                START SYSTEM
+            </button>
+
+            <button onclick="levitate()">
+                LEVITATE
+            </button>
+
+            <button onclick="stopSystem()">
+                STOP
+            </button>
+
+        </div>
+
+        <p id="controlMessage">
+            QLV control system is waiting.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FUTURE -->
+
+<section>
+
+    <h2 class="section-title">The Future of QLV</h2>
+
+    <p class="section-subtitle">
+        The QLV project is an educational and experimental
+        concept. Future versions could investigate improved
+        magnetic systems, energy storage, sensors, control
+        systems and sustainable transportation.
+    </p>
+
+</section>
+
+
+<footer>
+
+    <p>© 2026 QLV — Quantum Levitation Vehicle Project</p>
+
+    <p style="margin-top:10px;">
+        Concept • Research • Engineering • Future Mobility
+    </p>
+
+</footer>
+
+
+<script>
+
+function startSystem() {
+
+    document.getElementById("status").innerHTML =
+        "● SYSTEM ACTIVE";
+
+    document.getElementById("controlMessage").innerHTML =
+        "QLV control system activated. All simulated systems are online.";
+
+}
+
+function levitate() {
+
+    document.getElementById("status").innerHTML =
+        "● LEVITATION MODE";
+
+    document.getElementById("controlMessage").innerHTML =
+        "Levitation sequence simulated successfully.";
+
+}
+
+function stopSystem() {
+
+    document.getElementById("status").innerHTML =
+        "● SYSTEM READY";
+
+    document.getElementById("controlMessage").innerHTML =
+        "QLV system stopped and returned to standby.";
+
+}
+
+</script>
+
 </body>
 </html>
